@@ -1,0 +1,59 @@
+meta {
+  name: Update Player
+  type: http
+  seq: 5
+}
+
+put {
+  url: {{baseUrl}}/api/players/{{testPlayerId}}
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "tour": "ATP",
+    "discipline": "singles",
+    "rank": 998,
+    "previousRank": 999,
+    "points": 150,
+    "rankingAsOf": "2026-09-08",
+    "firstName": "Bruno",
+    "lastName": "Test",
+    "displayName": "Bruno Test Updated",
+    "countryCode": "US",
+    "dateOfBirth": "2000-01-01",
+    "heightCm": 180,
+    "handedness": "right",
+    "backhand": "two",
+    "turnedProYear": 2020,
+    "careerHighRank": 998,
+    "careerHighDate": "2026-01-01",
+    "careerTitles": 0,
+    "grandSlamTitles": 0,
+    "ytdWins": 1,
+    "ytdLosses": 0,
+    "prizeMoneyCareerUsd": 1000,
+    "prizeMoneyYtdUsd": 1000,
+    "photoUrl": null,
+    "coach": "Bruno Coach",
+    "birthplace": "Test City",
+    "residence": "Test City",
+    "bio": "Updated by Bruno collection."
+  }
+}
+
+tests {
+  test("status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+
+  test("display name updated", function() {
+    expect(res.getBody().displayName).to.equal("Bruno Test Updated");
+  });
+}

@@ -1,0 +1,25 @@
+meta {
+  name: Get Player Not Found
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/players/does-not-exist-404
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+tests {
+  test("status is 404", function() {
+    expect(res.getStatus()).to.equal(404);
+  });
+
+  test("error message present", function() {
+    expect(res.getBody().error).to.equal("Player not found.");
+  });
+}

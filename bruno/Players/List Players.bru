@@ -1,0 +1,32 @@
+meta {
+  name: List Players
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/players
+  body: none
+  auth: none
+}
+
+headers {
+  Accept: application/json
+}
+
+script:post-response {
+  const players = res.getBody();
+  if (Array.isArray(players) && players.length > 0) {
+    bru.setVar("playerId", players[0].id);
+  }
+}
+
+tests {
+  test("status is 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+
+  test("response is an array", function() {
+    expect(Array.isArray(res.getBody())).to.be.true;
+  });
+}

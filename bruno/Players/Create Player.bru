@@ -1,0 +1,60 @@
+meta {
+  name: Create Player
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{baseUrl}}/api/players
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "id": "{{testPlayerId}}",
+    "tour": "ATP",
+    "discipline": "singles",
+    "rank": 999,
+    "previousRank": 999,
+    "points": 100,
+    "rankingAsOf": "2026-09-08",
+    "firstName": "Bruno",
+    "lastName": "Test",
+    "displayName": "Bruno Test",
+    "countryCode": "US",
+    "dateOfBirth": "2000-01-01",
+    "heightCm": 180,
+    "handedness": "right",
+    "backhand": "two",
+    "turnedProYear": 2020,
+    "careerHighRank": 999,
+    "careerHighDate": "2026-01-01",
+    "careerTitles": 0,
+    "grandSlamTitles": 0,
+    "ytdWins": 0,
+    "ytdLosses": 0,
+    "prizeMoneyCareerUsd": 0,
+    "prizeMoneyYtdUsd": 0,
+    "photoUrl": null,
+    "coach": null,
+    "birthplace": "Test City",
+    "residence": "Test City",
+    "bio": "Created by Bruno collection for API testing."
+  }
+}
+
+tests {
+  test("status is 201", function() {
+    expect(res.getStatus()).to.equal(201);
+  });
+
+  test("created player id matches", function() {
+    expect(res.getBody().id).to.equal(bru.getEnvVar("testPlayerId"));
+  });
+}

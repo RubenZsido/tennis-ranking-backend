@@ -1,0 +1,6 @@
+{
+  "version": "1",
+  "name": "Tennis Ranking API",
+  "type": "collection",
+  "ignore": ["node_modules", ".git"]
+}

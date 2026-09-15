@@ -1,0 +1,33 @@
+meta {
+  name: Create Player Validation Error
+  type: http
+  seq: 7
+}
+
+post {
+  url: {{baseUrl}}/api/players
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+body:json {
+  {
+    "id": "invalid-body",
+    "tour": "ATP"
+  }
+}
+
+tests {
+  test("status is 400", function() {
+    expect(res.getStatus()).to.equal(400);
+  });
+
+  test("error message present", function() {
+    expect(res.getBody().error).to.be.a("string");
+  });
+}

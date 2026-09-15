@@ -1,0 +1,17 @@
+meta {
+  name: Delete Player
+  type: http
+  seq: 6
+}
+
+delete {
+  url: {{baseUrl}}/api/players/{{testPlayerId}}
+  body: none
+  auth: none
+}
+
+tests {
+  test("status is 204", function() {
+    expect(res.getStatus()).to.equal(204);
+  });
+}

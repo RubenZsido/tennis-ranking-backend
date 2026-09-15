@@ -5,11 +5,14 @@
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "node --watch src/index.js"
+    "dev": "node --watch src/index.js",
+    "db:seed": "node src/db/seed.js",
+    "db:generate-seed": "node scripts/generate-seed.mjs"
   },
   "dependencies": {
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
-    "express": "^5.2.1"
+    "express": "^5.2.1",
+    "pg": "^8.16.3"
   }
 }

@@ -20,7 +20,7 @@ body:json {
     "id": "{{testPlayerId}}",
     "tour": "ATP",
     "discipline": "singles",
-    "rank": 999,
+    "rank": 9999,
     "previousRank": 999,
     "points": 100,
     "rankingAsOf": "2026-09-08",
@@ -53,7 +53,7 @@ tests {
   test("status is 201", function() {
     expect(res.getStatus()).to.equal(201);
   });
-
+  
   test("created player id matches", function() {
     expect(res.getBody().id).to.equal(bru.getEnvVar("testPlayerId"));
   });
